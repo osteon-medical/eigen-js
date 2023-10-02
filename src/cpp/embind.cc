@@ -167,6 +167,12 @@ EMSCRIPTEN_BINDINGS(Module)
         .field("eigenvalues", &Solvers::EigenSolverResult::eigenvalues)
         .field("eigenvectors", &Solvers::EigenSolverResult::eigenvectors);
 
+    // Solver
+    value_object<Solvers::SelfAdjointEigenSolverResult>("SelfAdjointEigenSolverResult")
+        .field("info", &Solvers::SelfAdjointEigenSolverResult::info)
+        .field("eigenvalues", &Solvers::SelfAdjointEigenSolverResult::eigenvalues)
+        .field("eigenvectors", &Solvers::SelfAdjointEigenSolverResult::eigenvectors);
+
     value_object<CareSolver::CareSolverResult>("CareSolverResult")
         .field("info", &CareSolver::CareSolverResult::info)
         .field("K", &CareSolver::CareSolverResult::K)
@@ -174,6 +180,7 @@ EMSCRIPTEN_BINDINGS(Module)
 
     class_<Solvers>("Solvers")
         .class_function("eigenSolve", &Solvers::eigenSolve)
+        .class_function("selfAdjointEigenSolve", &Solvers::selfAdjointEigenSolve)
         .class_function("careSolve", &Solvers::careSolve)
         .class_function("createSimplicialCholeskySolver", &Solvers::createSimplicialCholeskySolver)
         #ifndef NO_OSQP

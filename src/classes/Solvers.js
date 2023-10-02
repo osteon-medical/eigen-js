@@ -14,7 +14,20 @@ class Solvers {
    * delete result.info
    * return result
    */
-  static eigenSolve(M, computeEigenvectors) { }
+  static eigenSolve(M, computeEigenvectors) {}
+
+  /**
+   * Find the eigenvalues of a given selfadjoint matrix
+   * Optionally, compute a set of normalized eigenvectors
+   * @param {Matrix} M - Matrix of interest
+   * @returns {SelfAdjointEigenSolverResult} - Result of the solver
+   * @example
+   * const M = new eig.Matrix([[8, 3], [2, 7]]);
+   * const result = eig.Solvers.selfAdjointEigenSolve(M);
+   * delete result.info
+   * return result
+   */
+  static selfAdjointEigenSolve(M) {}
 
   /**
    * Solve a continuous time algebraic Riccati equation of the form
@@ -25,7 +38,7 @@ class Solvers {
    * @param {Matrix} R - Quadratic input cost matrix
    * @returns {CareSolverResult} - Result of the solver
    * @example
-   * // Finds the optimal linear quadratic regulator controller of an inverted pendulum 
+   * // Finds the optimal linear quadratic regulator controller of an inverted pendulum
    * // The state-space dynamic of the pendulum linearized about the upside down state is
    * // xDot = A*x + B*u
    * // With x = [theta, thetaDot]
@@ -35,13 +48,13 @@ class Solvers {
    * const B = new eig.Matrix([0, 1])
    * const Q = eig.Matrix.identity(2, 2).mul(10)
    * const R = eig.Matrix.identity(1, 1)
-   * 
+   *
    * // Solve the CARE equation
    * const result = eig.Solvers.careSolve(A, B, Q, R)
    * delete result.info
    * return result
    */
-  static careSolve(A, B, Q, R) { }
+  static careSolve(A, B, Q, R) {}
 
   /**
    * Solve quadratic program of the form
@@ -58,7 +71,7 @@ class Solvers {
    * // Let's minimize 0.5 x' P x + q' x
    * // Suject to l <= Ax <= u
    * // With P = [[4, 1], [0, 2]]; q = [1, 1]
-   * // And A = [[1, 1], [1, 0], [0, 1]] 
+   * // And A = [[1, 1], [1, 0], [0, 1]]
    * // l = [1, 0, 0]; u = [1, 0.7, 0.7];
    * const P = eig.SparseMatrix.fromTriplets(2, 2, [
    *  [0, 0, 4], [0, 1, 1], [1, 1, 2]
@@ -71,5 +84,5 @@ class Solvers {
    * const u = new eig.Matrix([1, 0.7, 0.7])
    * return eig.Solvers.quadProgSolve(P, q, A, l, u);
    */
-  static quadProgSolve(P, q, A, l, u) { }
+  static quadProgSolve(P, q, A, l, u) {}
 }

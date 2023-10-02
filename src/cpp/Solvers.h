@@ -46,6 +46,26 @@ public:
   };
 
   /**
+  * SelfAdjointEigenSolver
+  */
+  typedef struct {
+    Eigen::ComputationInfo info;
+    DMD eigenvalues;
+    DMD eigenvectors;
+  } SelfAdjointEigenSolverResult;
+
+  static SelfAdjointEigenSolverResult selfAdjointEigenSolve(const DMD& matrix)
+  {
+    Eigen::SelfAdjointEigenSolver<Matrix> solver;
+    solver.computeDirect(matrix.data);
+    return (SelfAdjointEigenSolverResult){
+      .info = solver.info(),
+      .eigenvalues = DMD(solver.eigenvalues()),
+      .eigenvectors = DMD(solver.eigenvectors()),
+    };
+  };
+
+  /**
    * Care solver 
    */
   static CareSolver::CareSolverResult careSolve(const DMD &A, const DMD &B, const DMD &Q, const DMD &R)

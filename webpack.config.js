@@ -1,9 +1,8 @@
-
-const path = require('path');
+const path = require("path");
 
 const config = {
-  mode: 'production',
-  entry: './src/eigen.mjs',
+  mode: "production",
+  entry: "./src/eigen.mjs",
   context: path.resolve(__dirname, "."),
   module: {
     rules: [
@@ -23,12 +22,12 @@ const config = {
       {
         test: /\.wasm$/,
         type: "javascript/auto",
-        loader: "arraybuffer-loader"
-      }
+        loader: "arraybuffer-loader",
+      },
     ],
   },
   resolve: {
-    extensions: ['.js'],
+    extensions: [".js"],
   },
   // browser: {
   //   fs: false
@@ -36,16 +35,16 @@ const config = {
 };
 
 const nodeConfig = {
-  target: 'node',
+  target: "node",
   ...config,
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: 'index.js',
-    libraryExport: 'default',
-    library: 'eig',
-    libraryTarget: 'umd'
-  }
-}
+    filename: "index.js",
+    libraryExport: "default",
+    library: "eig",
+    libraryTarget: "umd",
+  },
+};
 
 // const webConfig = {
 //   target: 'web',
