@@ -34,8 +34,20 @@ const config = {
   // }
 };
 
-const nodeConfig = {
-  target: "node",
+// const nodeConfig = {
+//   target: "node",
+//   ...config,
+//   output: {
+//     path: path.resolve(__dirname, "dist"),
+//     filename: "index.js",
+//     libraryExport: "default",
+//     library: "eig",
+//     libraryTarget: "umd",
+//   },
+// };
+
+const webConfig = {
+  target: "web",
   ...config,
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -44,21 +56,9 @@ const nodeConfig = {
     library: "eig",
     libraryTarget: "umd",
   },
+  node: {
+    fs: "empty",
+  },
 };
 
-// const webConfig = {
-//   target: 'web',
-//   ...config,
-//   output: {
-//     path: path.resolve(__dirname, "dist"),
-//     filename: 'index.js',
-//     libraryExport: 'default',
-//     library: 'eig',
-//     libraryTarget: 'umd'
-//   },
-//   node: {
-//     fs: 'empty'
-//   },
-// }
-
-module.exports = [nodeConfig];
+module.exports = [webConfig];
